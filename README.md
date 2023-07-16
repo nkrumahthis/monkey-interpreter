@@ -4,4 +4,4 @@ My implementation of["Writing An Interpreter In Go" by Thorsten Ball](https://in
 
 ## Progress
 
-1.3 complete
+finished chapter 1
