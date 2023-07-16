@@ -1,8 +1,6 @@
 package lexer
 
 import (
-	"log"
-
 	"github.com/nkrumahthis/monkey-interpreter/token"
 )
 
@@ -129,18 +127,15 @@ func (l *Lexer) NextToken() token.Token {
 		if isLetter(l.ch) {
 			tok.Literal = l.readIdentifier()
 			tok.Type = token.LookupIdent(tok.Literal)
-			log.Println(tok)
 			return tok
 		} else if isDigit(l.ch){
 			tok.Literal = l.readNumber()
 			tok.Type = token.INT
-			log.Println(tok)
 			return tok
 		} else {
 			tok = newToken(token.ILLEGAL, l.ch)
 		}
 	}
 	l.readChar()
-	log.Println(tok)
 	return tok
 }
