@@ -1,6 +1,10 @@
 package lexer
 
-import "github.com/nkrumahthis/monkey-interpreter/token"
+import (
+	"log"
+
+	"github.com/nkrumahthis/monkey-interpreter/token"
+)
 
 type Lexer struct {
 	input        string
@@ -23,6 +27,11 @@ func isLetter(ch byte) bool {
 	return 'a' <= ch && ch <= 'z' || 'A' <= ch && ch <= 'Z' || ch == '_'
 }
 
+func (l *Lexer) skipWhitespace(){
+	for l.ch == ' ' || l.ch == '\t' || l.ch == '\n' || l.ch == '\r' {
+		l.readChar()
+	}
+}
 
 func (l *Lexer) readChar() {
 	if l.readPosition >= len(l.input) {
@@ -46,6 +55,8 @@ func (l *Lexer) readIdentifier() string {
 
 func (l *Lexer) NextToken() token.Token {
 	var tok token.Token
+
+	l.skipWhitespace()
 
 	switch l.ch {
 	case '=':
