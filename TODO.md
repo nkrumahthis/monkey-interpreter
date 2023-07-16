@@ -1,0 +1,1 @@
+- fully support unicode and emoji
